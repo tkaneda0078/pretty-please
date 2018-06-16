@@ -2,13 +2,12 @@
 
 @section('content')
 	<div class="container">
-		<div class="col-sm-offset-2 col-sm-8">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					New Wish
+		<div class="col-sm-offset-2 col-sm-8 form-container">
+			<div class="card">
+				<div class="card-header">
+					New
 				</div>
-
-				<div class="panel-body">
+				<div class="card-body">
 					<!-- Display Validation Errors -->
 					@include('common.errors')
 
@@ -18,18 +17,16 @@
 
 						<!-- Wish Name -->
 						<div class="form-group">
-							<label for="task-name" class="col-sm-3 control-label">Add wish</label>
-
-							<div class="col-sm-6">
-								<input type="text" name="name" id="wish-name" class="form-control" value="{{ old('wish') }}">
+							<div class="col-sm-12">
+								<input type="text" name="name" id="wish-name" class="form-control" value="{{ old('wish') }}" placeholder="欲しいもの">
 							</div>
 						</div>
 
 						<!-- Add Wish Button -->
 						<div class="form-group">
-							<div class="col-sm-offset-3 col-sm-6">
+							<div class="col-sm-offset-3 col-sm-10">
 								<button type="submit" class="btn btn-default">
-									<i class="fa fa-plus"></i>欲しいモノを追加する
+									<i class="fa fa-plus"></i>追加
 								</button>
 							</div>
 						</div>
@@ -39,12 +36,9 @@
 
 			<!-- Wish list -->
 			@if (count($wish_list) > 0)
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						欲しいモノ一覧
-					</div>
-
-					<div class="panel-body">
+				<div class="card">
+					<div class="card-heading"></div>
+					<div class="card-body">
 						<table class="table table-striped task-table">
 							<thead>
 								<th>Wish</th>
