@@ -15,13 +15,13 @@ use Illuminate\Http\Request;
  */
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/', function () {
+    Route::get('/', ['middleware' => 'auth', function () {
         $wish_list = Wish_list::all();
 
         return view('top', ['wish_list' => $wish_list]);
-    });
+    }]);
 
-    Route::post('/wish', function (Request $request) {
+    Route::post('/wish', ['middleware' => 'auth', function (Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:10',
         ]);
@@ -38,13 +38,13 @@ Route::group(['middleware' => 'web'], function () {
         $wish->save();
 
         return redirect('/');
-    });
+    }]);
 
-    Route::delete('/wish/{wish_list}', function (Wish_list $wish_list) {
+    Route::delete('/wish/{wish_list}', ['middleware' => 'auth', function (Wish_list $wish_list) {
         $wish_list->delete();
 
         return redirect('/');
-    });
+    }]);
 
     Route::auth();
 });
