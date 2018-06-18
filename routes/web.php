@@ -15,11 +15,8 @@ use Illuminate\Http\Request;
  */
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/', ['middleware' => 'auth', function () {
-        $wish_list = Wish_list::all();
-
-        return view('top', ['wish_list' => $wish_list]);
-    }]);
+    // top
+    Route::get('/', 'WishController@index');
 
     Route::post('/wish', ['middleware' => 'auth', function (Request $request) {
         $validator = Validator::make($request->all(), [
