@@ -12,7 +12,7 @@
 					@include('common.errors')
 
 					<!-- New Wish Form -->
-					<form action="/wish" method="POST" class="form-horizontal">
+					<form action="/wishs" method="POST" class="form-horizontal">
 						{{ csrf_field() }}
 
 						<!-- Wish Name -->

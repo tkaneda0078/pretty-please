@@ -18,24 +18,8 @@ Route::group(['middleware' => 'web'], function () {
     // top
     Route::get('/', 'WishController@index');
 
-    Route::post('/wish', ['middleware' => 'auth', function (Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:10',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
-
-        $wish = new Wish_list;
-        $wish->category = '';
-        $wish->name = $request->name;
-        $wish->save();
-
-        return redirect('/');
-    }]);
+    // store
+    Route::resource('/wishs', 'WishController');
 
     Route::delete('/wish/{wish_list}', ['middleware' => 'auth', function (Wish_list $wish_list) {
         $wish_list->delete();

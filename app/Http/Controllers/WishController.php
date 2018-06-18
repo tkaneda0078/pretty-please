@@ -43,11 +43,20 @@ class WishController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return redirect top
      */
     public function store(Request $request)
     {
-        //
+        $validated_data = $request->validate([
+            'name' => 'required|max:10'
+        ]);
+
+        $wish = new Wish_list;
+        $wish->category = '';
+        $wish->name = $request->name;
+        $wish->save();
+
+        return redirect('/');
     }
 
     /**
