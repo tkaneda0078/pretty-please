@@ -18,14 +18,11 @@ Route::group(['middleware' => 'web'], function () {
     // top
     Route::get('/', 'WishController@index');
 
-    // store
+    // add store
     Route::resource('/wishs', 'WishController');
 
-    Route::delete('/wish/{wish_list}', ['middleware' => 'auth', function (Wish_list $wish_list) {
-        $wish_list->delete();
-
-        return redirect('/');
-    }]);
+    // delete
+    Route::resource('/wishs/{id}', 'WishController');
 
     Route::auth();
 });

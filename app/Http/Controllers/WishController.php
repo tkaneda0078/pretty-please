@@ -101,6 +101,9 @@ class WishController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $wish = Wish_list::find($id);
+        $wish->delete();
+
+        return redirect('/');
     }
 }
