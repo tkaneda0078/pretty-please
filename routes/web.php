@@ -22,7 +22,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/wishs', 'WishController');
 
     // delete
-    Route::resource('/wishs/{id}', 'WishController');
+    Route::get('/wishs/{id}', 'WishController@destroy');
+
+    // line notification
+    Route::get('/line/notify', 'Notification\LineNotifyController@notify');
 
     Route::auth();
 });
