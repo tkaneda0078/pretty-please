@@ -20,7 +20,7 @@ class LineNotifyController extends Controller
      *
      * @var string
      */
-    protected $uri = 'https://notify-api.line.me/api/notify';
+    private $uri = 'https://notify-api.line.me/api/notify';
 
     /**
      * Content Type
@@ -28,14 +28,14 @@ class LineNotifyController extends Controller
      * 
      * @var string
      */
-    protected $content_type = 'application/x-www-form-urlencoded';
+    private $content_type = 'application/x-www-form-urlencoded';
 
     /**
      * Access Token
      *
      * @var string
      */
-    protected $access_token;
+    private $access_token;
 
     /**
      * Notify Message
