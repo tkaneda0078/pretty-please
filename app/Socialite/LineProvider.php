@@ -29,7 +29,7 @@ class LineProvider extends AbstractProvider implements ProviderInterface
     return 'https://api.line.me/oauth2/v2.1/token';
   }
 
-  public function getAccessToken($code)
+  public function getAccessTokenResponse($code)
   {
     $response = $this->getHttpClient()->post($this->getTokenUrl(), [
       'headers' => [
