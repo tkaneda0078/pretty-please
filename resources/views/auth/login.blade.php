@@ -54,13 +54,18 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-                                
-                                {{-- LINE login --}}
-                                <a class="btn btn-link" href="{{ url('/line/login') }}">line login</a>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
+                            </div>
+                            {{-- LINE login --}}
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <a class="btn btn-default" href="{{ url('/line/login') }}">
+                                        Line Login
+                                    </a>             
+                                </div>
                             </div>
                         </div>
                     </form>

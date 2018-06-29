@@ -8,15 +8,17 @@ use Laravel\Socialite\Two\User;
 
 class LineProvider extends AbstractProvider implements ProviderInterface
 {
-   /**
+  /**
    * The scopes being requested.
    *
    * @var array
    */
   protected $scopes = [
-    'openid',
+    'profile',
+    // 'openid',
+    // 'email'
   ];
-  
+
   protected function getAuthUrl($state)
   {
     return $this->buildAuthUrlFromBase('https://access.line.me/oauth2/v2.1/authorize', $state);
@@ -46,19 +48,25 @@ class LineProvider extends AbstractProvider implements ProviderInterface
 
   protected function getUserByToken($token)
   {
-    $response = $this->getHttpClient()->get('https://api.line.me/v1/profile', [
-      'headers' => [
-        'X-Line-ChannelToken' => $token['access_token'],
-      ],
-    ]);
-    return json_decode($response->getBody(), true);
+    $response = $this->getHttpClient()->get(
+      'https://api.line.me/v2/profile',
+      [
+        'headers' => [
+          'Authorization' => 'Bearer ' . $token,
+        ],
+      ]
+    );
+    return json_decode($response->getBody()->getContents(), true);
   }
 
   protected function mapUserToObject(array $user)
   {
     return (new User())->setRaw($user)->map([
-      'id' => $user['mid'],
-      'name' => $user['displayName'],
+      'id' => $user['userId'] ?? $user['sub'] ?? null,
+      'nickname' => null,
+      'name' => $user['displayName'] ?? $user['name'] ?? null,
+      'avatar' => $user['pictureUrl'] ?? $user['picture'] ?? null,
+      'email' => $user['email'] ?? null,
     ]);
   }
 

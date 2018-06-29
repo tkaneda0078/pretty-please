@@ -27,9 +27,9 @@ Route::group(['middleware' => 'web'], function () {
     // line notification
     Route::get('/line/notify', 'Notification\LineNotifyController@notify');
 
-    // LINE login
-    Route::get('/line/login', 'Line\SocialController@redirectToProvider')->name('login');
-    Route::get('callback', 'Line\SocialController@handleProviderCallback');
+    // SocialAccount login
+    Route::get('/{provider}/login', 'Auth\SocialAccountController@redirectToProvider');
+    Route::get('/{provider}/login/callback', 'Auth\SocialAccountController@handleProviderCallback');
 
     Route::auth();
 });
