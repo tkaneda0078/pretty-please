@@ -59,14 +59,6 @@
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             </div>
-                            {{-- LINE login --}}
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <a class="btn btn-default" href="{{ url('/line/login') }}">
-                                        Line Login
-                                    </a>             
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>

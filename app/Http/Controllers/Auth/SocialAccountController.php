@@ -18,7 +18,14 @@ class SocialAccountController extends Controller
     public function handleProviderCallback(Request $request, SocialAccountsService $accountService, $provider)
     {
         try {
-            $user = Socialite::driver($provider)->user();
+            $socialUser = Socialite::driver($provider)->user();
+
+            $account = $accountService->find($socialUser, $provider);
+            if (!$account) {
+                $accountService->associate($request->user(), $socialUser, $provider);
+            }
+
+            return redirect('/');
         } catch (\Exception $e) {
             return redirect('/');
         }

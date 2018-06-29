@@ -64,6 +64,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    {{-- LINE login --}}
+                                    <a class="dropdown-item" href="{{ url('/line/login') }}">
+                                        Line Login
+                                    </a>
                                 </div>
                             </li>
                         @endguest
